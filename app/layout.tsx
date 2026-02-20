@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Rubik, Open_Sans } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/feature/Header";
 
 const rubik = Rubik({
   variable: "--font-rubik",
@@ -30,6 +31,7 @@ export default function RootLayout({
         className={`${rubik.variable} ${openSans.variable} antialiased bg-white text-dark font-sans`}
       >
         <main className="min-h-screen flex flex-col">
+          <Header />
           {children}
         </main>
       </body>

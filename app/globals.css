@@ -6,6 +6,7 @@
 
   --color-dark: var(--foreground);
   --color-white: #ffffff;
+  --color-light-gray: #FAFAFA;
   --color-gray: var(--background);
   --color-blue: #4A69E2;
   --color-yellow: #FFA52F;
@@ -22,4 +23,17 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-rubik), sans-serif;
+}
+
+@layer utility {
+  .page_container {
+    @apply container mx-auto px-4 py-8;
+
+  }
+
+  .header_wrapper {
+    @apply bg-light-gray text-dark p-4 rounded-xl flex items-center justify-between;
+
+  }
+
 }
