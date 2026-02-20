@@ -32,12 +32,12 @@ const Header = () => {
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
     return (
-        <div className="page_container">
+        <header>
             {/* Mobile Sidebar */}
             {/* <Sidebar openMobileMenu={openMobileMenu} setOpenMobileMenu={setOpenMobileMenu} /> */}
             <div className="header_wrapper">
                 {/* Navigation */}
-                <div className="flex items-center justify-between">
+                <nav className="flex items-center justify-between">
                     {/* Desktop Menu */}
                     <ul className="hidden lg:flex items-center gap-[40px]">
                         {navLinks.map((link) => (
@@ -47,7 +47,7 @@ const Header = () => {
                                 onMouseEnter={() => link?.children && setOpenMenu(link.name)}
                                 onMouseLeave={() => setOpenMenu("")}
                             >
-                                <Link href={link.href}>{link.name}</Link>
+                                <Link href={link.href} className="hover:text-blue transition-colors duration-300">{link.name}</Link>
                                 {/* Dropdown Arrow */}
                                 {link?.children && (
                                     <Image
@@ -65,7 +65,7 @@ const Header = () => {
                                             <li key={child.name}>
                                                 <Link
                                                     href={child.href}
-                                                    className="text-base font-semibold"
+                                                    className="text-base font-semibold hover:text-blue transition-colors duration-300"
                                                 >
                                                     {child.name}
                                                 </Link>
@@ -84,7 +84,7 @@ const Header = () => {
                             onClick={() => setOpenMobileMenu(!openMobileMenu)}
                         />
                     </div>
-                </div>
+                </nav>
 
                 {/* Brand Logo */}
                 <div>
@@ -123,7 +123,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </header>
     );
 };
 

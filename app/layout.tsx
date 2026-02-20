@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
-import { Rubik, Open_Sans } from "next/font/google";
 import "./globals.css";
+import type { Metadata } from "next";
+import { Rubik, Open_Sans, Inter } from "next/font/google";
 import Header from "@/components/feature/Header";
 
+// font setup
 const rubik = Rubik({
   variable: "--font-rubik",
   subsets: ["latin"],
@@ -12,9 +13,16 @@ const rubik = Rubik({
 const openSans = Open_Sans({
   variable: "--font-open-sans",
   subsets: ["latin"],
-  weight: ["400", "600"],
+  weight: ["400", "600", "700", "800"],
 });
 
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+// metadata
 export const metadata: Metadata = {
   title: "Kicks Store",
   description: "The biggest sneaker store",
@@ -28,9 +36,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${rubik.variable} ${openSans.variable} antialiased bg-white text-dark font-sans`}
+        className={`${rubik.variable} ${openSans.variable} ${inter.variable} antialiased bg-white text-dark font-sans`}
       >
-        <main className="min-h-screen flex flex-col">
+        <main className="layout_container">
           <Header />
           {children}
         </main>
