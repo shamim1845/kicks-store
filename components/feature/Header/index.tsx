@@ -5,7 +5,7 @@ import Link from "next/link";
 import Sidebar from "./Sidebar";
 
 // Navigation Links
-const navLinks = [
+export const navLinks = [
     { name: "New Drops 🔥", href: "/new-drops" },
     {
         name: "Men",
@@ -34,10 +34,12 @@ const Header = () => {
     return (
         <header>
             {/* Mobile Sidebar */}
-            {/* <Sidebar openMobileMenu={openMobileMenu} setOpenMobileMenu={setOpenMobileMenu} /> */}
-            <div className="header_wrapper">
-                {/* Navigation */}
-                <nav className="flex items-center justify-between">
+            <Sidebar openMobileMenu={openMobileMenu} setOpenMobileMenu={setOpenMobileMenu} />
+
+            {/* Header Wrapper */}
+            <div className="header_wrapper relative flex items-center justify-between">
+                {/* Navigation — left */}
+                <nav>
                     {/* Desktop Menu */}
                     <ul className="hidden lg:flex items-center gap-[40px]">
                         {navLinks.map((link) => (
@@ -60,12 +62,12 @@ const Header = () => {
                                 )}
                                 {/* Dropdown Menu */}
                                 {openMenu === link?.name && (
-                                    <ul className="absolute top-full left-0 bg-white shadow-lg p-4 rounded-lg">
+                                    <ul className="absolute top-full left-0 w-max bg-white shadow-lg p-4 rounded-lg flex flex-col gap-1">
                                         {link?.children?.map((child) => (
                                             <li key={child.name}>
                                                 <Link
                                                     href={child.href}
-                                                    className="text-base font-semibold hover:text-blue transition-colors duration-300"
+                                                    className="block whitespace-nowrap text-base font-semibold hover:text-blue transition-colors duration-300"
                                                 >
                                                     {child.name}
                                                 </Link>
@@ -77,17 +79,17 @@ const Header = () => {
                         ))}
                     </ul>
 
-                    {/* Mobile Menu */}
+                    {/* Mobile Hamburger */}
                     <div className="lg:hidden">
                         <Image src="/icons/bars.svg" alt="Menu" width={20} height={20}
-                            className="cursor-pointer"
+                            className="cursor-pointer hover:scale-110 transition-transform duration-300"
                             onClick={() => setOpenMobileMenu(!openMobileMenu)}
                         />
                     </div>
                 </nav>
 
-                {/* Brand Logo */}
-                <div>
+                {/* Brand Logo — absolutely centered on all screen sizes */}
+                <div className="absolute left-1/2 -translate-x-1/2">
                     <Link href="/">
                         <Image
                             src="/logo/logo_dark.svg"
@@ -99,7 +101,7 @@ const Header = () => {
                     </Link>
                 </div>
 
-                {/* Header Icons */}
+                {/* Header Icons — right */}
                 <div className="flex items-center gap-[9px] lg:gap-[40px]">
                     <Image
                         src="/icons/search.svg"

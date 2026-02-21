@@ -24,10 +24,10 @@ const ProductCard = ({ product, className, isNew = true, badge }: ProductCardPro
             )}
         >
             {/* Image area */}
-            <div className="relative bg-light-gray flex items-center justify-center p-2 min-h-[180px] lg:min-h-[220px] overflow-hidden rounded-[16px] w-full h-full">
+            <div className="relative bg-light-gray flex items-center justify-center p-2  overflow-hidden rounded-[16px] lg:rounded-[28px] w-full h-full">
                 {/* Badge */}
                 {badgeLabel && (
-                    <span className={cn("absolute top-[8px] left-[8px] z-10 text-[11px] font-inter font-semibold uppercase px-2 py-1 rounded-tl-[12px] rounded-br-[12px] tracking-wide", badgeBg)}>
+                    <span className={cn("absolute top-[8px] left-[8px] z-10 text-[11px] font-inter font-semibold uppercase px-2 lg:px-4 py-1 lg:py-3 rounded-tl-[12px] lg:rounded-tl-[24px] rounded-br-[12px] lg:rounded-br-[24px] tracking-wide", badgeBg)}>
                         {badgeLabel}
                     </span>
                 )}
@@ -37,7 +37,7 @@ const ProductCard = ({ product, className, isNew = true, badge }: ProductCardPro
                     alt={product.title}
                     width={300}
                     height={240}
-                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 rounded-[12px]"
+                    className="w-full h-full aspect-3/3.5 object-cover transition-transform duration-500 group-hover:scale-105 rounded-[12px] lg:rounded-[24px]"
                     unoptimized
                 />
             </div>
@@ -45,7 +45,7 @@ const ProductCard = ({ product, className, isNew = true, badge }: ProductCardPro
             {/* Content */}
             <div className="flex flex-col flex-1 w-full h-full">
                 {/* Product title */}
-                <div className="px-4 pt-4 pb-3 min-h-[65px] lg:min-h-[70px]">
+                <div className="py-3 min-h-[65px] lg:min-h-[70px]">
                     <h3 className="text-[16px] lg:text-[24px] font-semibold uppercase leading-snug text-dark line-clamp-2 tracking-wide">
                         {product.title}
                     </h3>

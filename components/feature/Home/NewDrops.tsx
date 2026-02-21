@@ -49,7 +49,7 @@ const NewDrops = () => {
                     <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {products.map((product) => (
                             <li key={product.id}>
-                                <ProductCard product={product} badge="90% off" />
+                                <ProductCard product={product} isNew={true} />
                             </li>
                         ))}
                     </ul>
