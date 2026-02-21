@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Rubik, Open_Sans, Inter } from "next/font/google";
 import Header from "@/components/feature/Header";
+import ReduxProvider from "@/components/ReduxProvider";
 
 // font setup
 const rubik = Rubik({
@@ -38,10 +39,12 @@ export default function RootLayout({
       <body
         className={`${rubik.variable} ${openSans.variable} ${inter.variable} antialiased bg-white text-dark font-sans`}
       >
-        <main className="layout_container">
-          <Header />
-          {children}
-        </main>
+        <ReduxProvider>
+          <main className="layout_container">
+            <Header />
+            {children}
+          </main>
+        </ReduxProvider>
       </body>
     </html>
   );
