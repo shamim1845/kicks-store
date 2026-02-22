@@ -28,12 +28,11 @@ body {
 
 @layer utility {
   .layout_container {
-    @apply w-full py-8 lg:py-8 min-h-screen;
-
+    @apply w-full pt-8 lg:pt-8 min-h-screen;
   }
 
   .page_container {
-    @apply w-full h-full flex flex-col gap-6 lg:gap-10 pt-6 lg:pt-10;
+    @apply w-full h-full flex flex-col gap-6 lg:gap-10 py-6 lg:py-10;
   }
 
   .section_container {

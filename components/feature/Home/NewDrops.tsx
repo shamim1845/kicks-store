@@ -8,7 +8,7 @@ import ErrorState from '@/components/ui/ErrorState'
 import { useGetProductsQuery } from '@/redux/hooks'
 
 const NewDrops = () => {
-    const { data: products, isLoading, isError, refetch } = useGetProductsQuery({ offset: 0, limit: 4 })
+    const { data: products, isLoading, isError, refetch } = useGetProductsQuery({ offset: 0, limit: 8 })
 
     const isEmpty = !isLoading && !isError && (!products || products.length === 0)
 

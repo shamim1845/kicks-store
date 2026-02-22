@@ -32,7 +32,7 @@ const reviews = [
         image: '/review/img/3.png',
         name: 'Sam R.',
     },
-    
+
     {
         id: 4,
         title: 'Good Quality',
@@ -60,7 +60,7 @@ const reviews = [
         image: '/review/img/3.png',
         name: 'Sam R.',
     },
-    
+
 ]
 
 const AUTOPLAY_INTERVAL = 3000
@@ -189,9 +189,8 @@ const Reviews = () => {
                         key={i}
                         onClick={() => handleDotClick(i)}
                         aria-label={`Go to slide ${i + 1}`}
-                        className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                            current === i ? 'w-5 bg-blue' : 'w-2 bg-gray-300'
-                        }`}
+                        className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${current === i ? 'w-5 bg-blue' : 'w-2 bg-gray-300'
+                            }`}
                     />
                 ))}
             </div>

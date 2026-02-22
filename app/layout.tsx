@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Rubik, Open_Sans, Inter } from "next/font/google";
 import Header from "@/components/feature/Header";
 import ReduxProvider from "@/components/ReduxProvider";
+import Footer from "@/components/feature/Footer";
 
 // font setup
 const rubik = Rubik({
@@ -43,6 +44,7 @@ export default function RootLayout({
           <main className="layout_container">
             <Header />
             {children}
+            <Footer />
           </main>
         </ReduxProvider>
       </body>
