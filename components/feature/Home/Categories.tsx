@@ -53,7 +53,7 @@ const CategoryCard = ({ category }: { category: Category }) => {
 
             {/* Bottom bar */}
             <div className="bg-gray flex items-center justify-between p-4 lg:p6">
-                <h3 className="text-[24px] lg:text-[36px] font-semibold capitalize lg:uppercase leading-[100%] lg:leading-[95%] text-dark tracking-wide max-w-[75%]">
+                <h3 className="text-[24px] lg:text-[36px] font-semibold capitalize lg:uppercase leading-[100%] lg:leading-[95%] text-dark tracking-wide max-w-[75%] line-clamp-1">
                     {category.name}
                 </h3>
                 <div className="w-[32px] h-[32px] lg:w-[48px] lg:h-[48px] bg-dark rounded-[8px] flex items-center justify-center shrink-0 hover:bg-dark/80 transition-colors duration-300">
@@ -160,7 +160,7 @@ const Categories = () => {
                 {/* ── Desktop: 2 cards side-by-side, horizontal page scroll ── */}
                 <div
                     ref={sliderRef}
-                    className="hidden lg:flex overflow-x-auto scroll-smooth mb-10 rounded-tl-[64px]!"
+                    className="hidden lg:flex overflow-x-auto scroll-smooth rounded-tl-[64px]!"
                     style={{ scrollbarWidth: 'none' }}
                 >
                     {isLoading
