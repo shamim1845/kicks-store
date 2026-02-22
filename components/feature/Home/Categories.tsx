@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useGetCategoriesQuery } from '@/redux/hooks'
@@ -92,19 +92,47 @@ const Categories = () => {
 
     // Mobile: horizontal scroll, 2 cards per column (stacked vertically)
     const mobileSliderRef = useRef<HTMLDivElement>(null)
+    const [mobileScroll, setMobileScroll] = useState({ atStart: true, atEnd: false })
+
     const scrollMobile = (dir: 'prev' | 'next') => {
         if (!mobileSliderRef.current) return
         const w = mobileSliderRef.current.clientWidth
         mobileSliderRef.current.scrollBy({ left: dir === 'next' ? w : -w, behavior: 'smooth' })
     }
 
+    useEffect(() => {
+        const el = mobileSliderRef.current
+        if (!el) return
+        const update = () => setMobileScroll({
+            atStart: el.scrollLeft <= 0,
+            atEnd: el.scrollLeft >= el.scrollWidth - el.clientWidth - 1,
+        })
+        update()
+        el.addEventListener('scroll', update, { passive: true })
+        return () => el.removeEventListener('scroll', update)
+    }, [categories])
+
     // Desktop: scroll by full visible width (shows 2 side-by-side cards at a time)
     const sliderRef = useRef<HTMLDivElement>(null)
+    const [desktopScroll, setDesktopScroll] = useState({ atStart: true, atEnd: false })
+
     const scrollDesktop = (dir: 'prev' | 'next') => {
         if (!sliderRef.current) return
         const w = sliderRef.current.clientWidth
         sliderRef.current.scrollBy({ left: dir === 'next' ? w : -w, behavior: 'smooth' })
     }
+
+    useEffect(() => {
+        const el = sliderRef.current
+        if (!el) return
+        const update = () => setDesktopScroll({
+            atStart: el.scrollLeft <= 0,
+            atEnd: el.scrollLeft >= el.scrollWidth - el.clientWidth - 1,
+        })
+        update()
+        el.addEventListener('scroll', update, { passive: true })
+        return () => el.removeEventListener('scroll', update)
+    }, [categories])
 
     return (
         <div className='bg-dark'>
@@ -118,13 +146,13 @@ const Categories = () => {
                     <div className="flex items-center gap-2">
                         {/* Mobile prev/next */}
                         <div className="lg:hidden flex gap-2">
-                            <NavBtn dir="prev" onClick={() => scrollMobile('prev')} />
-                            <NavBtn dir="next" onClick={() => scrollMobile('next')} />
+                            <NavBtn dir="prev" onClick={() => scrollMobile('prev')} disabled={mobileScroll.atStart} />
+                            <NavBtn dir="next" onClick={() => scrollMobile('next')} disabled={mobileScroll.atEnd} />
                         </div>
                         {/* Desktop prev/next */}
                         <div className="hidden lg:flex gap-2 lg:gap-4">
-                            <NavBtn dir="prev" onClick={() => scrollDesktop('prev')} />
-                            <NavBtn dir="next" onClick={() => scrollDesktop('next')} />
+                            <NavBtn dir="prev" onClick={() => scrollDesktop('prev')} disabled={desktopScroll.atStart} />
+                            <NavBtn dir="next" onClick={() => scrollDesktop('next')} disabled={desktopScroll.atEnd} />
                         </div>
                     </div>
                 </div>

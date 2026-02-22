@@ -1,61 +1,23 @@
 'use client'
 
-import Button from '@/components/ui/Button'
-import ProductCard from '@/components/ui/ProductCard'
-import ProductCardSkeleton from '@/components/ui/ProductCardSkeleton'
-import EmptyState from '@/components/ui/EmptyState'
-import ErrorState from '@/components/ui/ErrorState'
 import { useGetProductsQuery } from '@/redux/hooks'
+import ProductSlider from '@/components/ui/ProductSlider'
+import Button from '@/components/ui/Button'
 
 const NewDrops = () => {
     const { data: products, isLoading, isError, refetch } = useGetProductsQuery({ offset: 0, limit: 8 })
 
-    const isEmpty = !isLoading && !isError && (!products || products.length === 0)
-
     return (
-        <section className="section_container">
-            {/* Header */}
-            <div className="flex items-center justify-between gap-6">
-                <h2 className='flex-1 text-[24px] lg:text-[74px] font-semibold leading-[100%] lg:leading-[95%] lg:uppercase'>
-                    Don&apos;t miss out <br /> new drops
-                </h2>
-                <Button className=''>Shop new drops</Button>
-            </div>
-
-            {/* Body */}
-            <div className="mt-6 lg:mt-10">
-                {/* Loading */}
-                {isLoading && (
-                    <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <ProductCardSkeleton count={4} />
-                    </ul>
-                )}
-
-                {/* Error */}
-                {isError && (
-                    <ErrorState onRetry={refetch} />
-                )}
-
-                {/* Empty */}
-                {isEmpty && (
-                    <EmptyState
-                        title="No new drops yet"
-                        description="We're restocking soon. Check back later for the latest arrivals."
-                    />
-                )}
-
-                {/* Products */}
-                {products && products.length > 0 && (
-                    <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {products.map((product) => (
-                            <li key={product.id}>
-                                <ProductCard product={product} isNew={true} />
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </div>
-        </section>
+        <ProductSlider
+            title={<>Don&apos;t miss out <br /> new drops</>}
+            products={products}
+            isLoading={isLoading}
+            isError={isError}
+            refetch={refetch}
+            emptyTitle="No new drops yet"
+            emptyDescription="We're restocking soon. Check back later for the latest arrivals."
+            action={<Button>Shop new drops</Button>}
+        />
     )
 }
 

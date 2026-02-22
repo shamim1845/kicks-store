@@ -121,13 +121,16 @@ const ReviewCard = ({ review }: { review: Review }) => (
 /* ── Main component ── */
 const Reviews = () => {
     const [current, setCurrent] = useState(0)
-    const [isDesktop, setIsDesktop] = useState(false)
+    const [isDesktop, setIsDesktop] = useState(() =>
+        typeof window !== 'undefined'
+            ? window.matchMedia('(min-width: 1024px)').matches
+            : false
+    )
     const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
     // Detect lg breakpoint
     useEffect(() => {
         const mq = window.matchMedia('(min-width: 1024px)')
-        setIsDesktop(mq.matches)
         const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches)
         mq.addEventListener('change', handler)
         return () => mq.removeEventListener('change', handler)
