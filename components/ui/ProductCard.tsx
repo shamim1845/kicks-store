@@ -32,23 +32,27 @@ const ProductCard = ({ product, className, isNew = true, badge }: ProductCardPro
                     </span>
                 )}
                 {/* Image */}
-                <Image
-                    src={product.images[0] || "https://placehold.co/600x480"}
-                    alt={product.title}
-                    width={300}
-                    height={240}
-                    className="w-full h-full aspect-3/3.5 object-cover transition-transform duration-500 group-hover:scale-105 rounded-[12px] lg:rounded-[24px]"
-                    unoptimized
-                />
+                <Link href={`/product/${product.id}`}>
+                    <Image
+                        src={product.images[0] || "https://placehold.co/600x480"}
+                        alt={product.title}
+                        width={300}
+                        height={240}
+                        className="w-full h-full aspect-3/3.5 object-cover transition-transform duration-500 group-hover:scale-105 rounded-[12px] lg:rounded-[24px]"
+                        unoptimized
+                    />
+                </Link>
             </div>
 
             {/* Content */}
             <div className="flex flex-col flex-1 w-full h-full">
                 {/* Product title */}
                 <div className="py-3 min-h-[65px] lg:min-h-[70px]">
-                    <h3 className="text-[16px] lg:text-[24px] font-semibold uppercase leading-snug text-dark line-clamp-2 tracking-wide">
-                        {product.title}
-                    </h3>
+                    <Link href={`/product/${product.id}`}>
+                        <h3 className="text-[16px] lg:text-[24px] font-semibold uppercase leading-snug text-dark line-clamp-2 tracking-wide">
+                            {product.title}
+                        </h3>
+                    </Link>
                 </div>
 
                 {/* CTA button row */}

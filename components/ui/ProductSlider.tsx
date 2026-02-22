@@ -47,6 +47,8 @@ interface ProductSliderProps {
     emptyDescription?: string
     /** Optional element shown in the header instead of the default prev/next arrows */
     action?: React.ReactNode
+    /** Optional className override for the section title (default: responsive jumbo size) */
+    titleClassName?: string
 }
 
 /* ─── ProductSlider ─────────────────────────────────────────── */
@@ -59,6 +61,7 @@ const ProductSlider = ({
     emptyTitle = 'No products found',
     emptyDescription = 'Check back later for new arrivals.',
     action,
+    titleClassName,
 }: ProductSliderProps) => {
     const sliderRef = useRef<HTMLDivElement>(null)
     const [activePage, setActivePage] = useState(0)
@@ -103,7 +106,7 @@ const ProductSlider = ({
         <section className="section_container">
             {/* ── Header ── */}
             <div className="flex items-center justify-between gap-6">
-                <h2 className="flex-1 text-[24px] lg:text-[74px] font-semibold leading-[100%] lg:leading-[95%] lg:uppercase">
+                <h2 className={titleClassName ?? 'flex-1 text-[24px] lg:text-[74px] font-semibold leading-[100%] lg:leading-[95%] lg:uppercase'}>
                     {title}
                 </h2>
 
