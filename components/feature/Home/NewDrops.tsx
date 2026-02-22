@@ -13,7 +13,7 @@ const NewDrops = () => {
     const isEmpty = !isLoading && !isError && (!products || products.length === 0)
 
     return (
-        <div>
+        <section className="section_container">
             {/* Header */}
             <div className="flex items-center justify-between gap-6">
                 <h2 className='flex-1 text-[24px] lg:text-[74px] font-semibold leading-[100%] lg:leading-[95%] lg:uppercase'>
@@ -55,7 +55,7 @@ const NewDrops = () => {
                     </ul>
                 )}
             </div>
-        </div>
+        </section>
     )
 }
 

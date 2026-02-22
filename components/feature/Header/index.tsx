@@ -32,7 +32,7 @@ const Header = () => {
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
     return (
-        <header>
+        <header className="section_container">
             {/* Mobile Sidebar */}
             <Sidebar openMobileMenu={openMobileMenu} setOpenMobileMenu={setOpenMobileMenu} />
 

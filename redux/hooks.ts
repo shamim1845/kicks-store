@@ -7,3 +7,4 @@ export const useAppSelector = useSelector.withTypes<RootState>()
 
 // Re-export RTK Query hooks for convenience
 export { useGetProductsQuery, useGetProductByIdQuery, useGetProductBySlugQuery } from './services/productsApi'
+export { useGetCategoriesQuery, useGetCategoryByIdQuery } from './services/categoriesApi'

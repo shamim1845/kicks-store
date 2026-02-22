@@ -1,6 +1,7 @@
 import Banner from "@/components/feature/Home/Banner";
 import Tagline from "../components/feature/Home/Tagline";
 import NewDrops from "@/components/feature/Home/NewDrops";
+import Categories from "@/components/feature/Home/Categories";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Tagline />
       <Banner />
       <NewDrops />
+      <Categories />
     </div>
   );
 }
