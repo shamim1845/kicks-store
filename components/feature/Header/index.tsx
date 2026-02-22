@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Sidebar from "./Sidebar";
+import { useAppSelector } from "@/redux/hooks";
 
 // Navigation Links
 export const navLinks = [
@@ -28,6 +29,8 @@ export const navLinks = [
 ];
 
 const Header = () => {
+    const { items } = useAppSelector((state) => state.cart);
+    const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
     const [openMenu, setOpenMenu] = useState("");
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
@@ -120,9 +123,9 @@ const Header = () => {
                     />
 
                     {/* Cart Count */}
-                    <div className="w-[20px] h-[20px] lg:w-[32px] lg:h-[32px] bg-yellow rounded-full flex items-center justify-center">
-                        <span className="text-[14px] font-open-sans font-semibold">0</span>
-                    </div>
+                    <Link href="/cart" className="w-[20px] h-[20px] lg:w-[32px] lg:h-[32px] bg-yellow rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                        <span className="text-[14px] font-open-sans font-semibold">{cartCount}</span>
+                    </Link>
                 </div>
             </div>
         </header>

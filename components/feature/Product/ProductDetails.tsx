@@ -2,6 +2,9 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import { useAppDispatch } from '@/redux/hooks'
+import { addToCart } from '@/redux/features/cartSlice'
 import Button from '@/components/ui/Button'
 import type { Product } from '@/types'
 
@@ -14,8 +17,52 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
+    const router = useRouter()
+    const dispatch = useAppDispatch()
     const [selectedColor, setSelectedColor] = useState(0)
     const [selectedSize, setSelectedSize] = useState<number | null>(null)
+    const [error, setError] = useState<string | null>(null)
+
+    const handleAddToCart = () => {
+        if (!selectedSize) {
+            setError('Please select a size')
+            return
+        }
+        setError(null)
+
+        dispatch(addToCart({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            image: product.images[0],
+            category: product.category.name,
+            color: COLORS[selectedColor], // Using hex as name for now
+            size: selectedSize,
+        }))
+
+        // Optional: Provide feedback (alert or toast)
+        alert('Added to cart!')
+    }
+
+    const handleBuyNow = () => {
+        if (!selectedSize) {
+            setError('Please select a size')
+            return
+        }
+        setError(null)
+
+        dispatch(addToCart({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            image: product.images[0],
+            category: product.category.name,
+            color: COLORS[selectedColor],
+            size: selectedSize,
+        }))
+
+        router.push('/cart')
+    }
 
     return (
         <div className="flex flex-col gap-5">
@@ -63,7 +110,10 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                     {SIZES.map((size) => (
                         <button
                             key={size}
-                            onClick={() => setSelectedSize(size)}
+                            onClick={() => {
+                                setSelectedSize(size)
+                                setError(null)
+                            }}
                             className={`w-12 h-12 rounded-lg text-[13px] font-semibold transition-all border cursor-pointer ${selectedSize === size
                                 ? 'bg-dark text-white border-dark'
                                 : 'bg-white text-dark border-gray-200 hover:border-dark'
@@ -73,13 +123,17 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                         </button>
                     ))}
                 </div>
+                {error && <p className="text-red-500 text-[12px] mt-2 font-semibold uppercase">{error}</p>}
             </div>
 
             {/* CTA buttons */}
             <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-3 mt-1">
                     {/* Add to Cart button */}
-                    <Button className="flex-1 bg-dark! text-white! hover:bg-dark/80! h-12!">
+                    <Button
+                        onClick={handleAddToCart}
+                        className="flex-1 bg-dark! text-white! hover:bg-dark/80! h-12!"
+                    >
                         Add to Cart
                     </Button>
                     {/* Wishlist button */}
@@ -91,7 +145,10 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                     </button>
                 </div>
                 {/* Buy It Now button */}
-                <Button className="w-full bg-blue! text-white! hover:bg-blue/80! h-12!">
+                <Button
+                    onClick={handleBuyNow}
+                    className="w-full bg-blue! text-white! hover:bg-blue/80! h-12!"
+                >
                     Buy It Now
                 </Button>
             </div>
