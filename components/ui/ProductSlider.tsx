@@ -8,35 +8,10 @@ import EmptyState from '@/components/ui/EmptyState'
 import ErrorState from '@/components/ui/ErrorState'
 import type { Product } from '@/types'
 
-/* ── Arrow nav button ───────────────────────────────────────── */
-const NavBtn = ({
-    dir,
-    onClick,
-    disabled,
-}: {
-    dir: 'prev' | 'next'
-    onClick: () => void
-    disabled?: boolean
-}) => (
-    <button
-        onClick={onClick}
-        disabled={disabled}
-        aria-label={dir === 'prev' ? 'Previous' : 'Next'}
-        className="w-8 lg:w-10 h-8 lg:h-10 flex items-center justify-center rounded-[8px] bg-dark hover:bg-dark/60 disabled:opacity-60 disabled:cursor-not-allowed transition-colors cursor-pointer"
-    >
-        <Image
-            src={dir === 'prev' ? '/icons/chevron_backward_light.svg' : '/icons/chevron_forward_light.svg'}
-            alt={dir === 'prev' ? 'Previous' : 'Next'}
-            width={16}
-            height={16}
-        />
-    </button>
-)
-
-/* ─── Constants ─────────────────────────────────────────────── */
+// Constants
 const PER_PAGE = 4
 
-/* ─── Props ─────────────────────────────────────────────────── */
+// Props
 interface ProductSliderProps {
     title: React.ReactNode
     products?: Product[]
@@ -45,13 +20,11 @@ interface ProductSliderProps {
     refetch?: () => void
     emptyTitle?: string
     emptyDescription?: string
-    /** Optional element shown in the header instead of the default prev/next arrows */
     action?: React.ReactNode
-    /** Optional className override for the section title (default: responsive jumbo size) */
     titleClassName?: string
 }
 
-/* ─── ProductSlider ─────────────────────────────────────────── */
+// ProductSlider
 const ProductSlider = ({
     title,
     products,
@@ -110,7 +83,7 @@ const ProductSlider = ({
                     {title}
                 </h2>
 
-                {/* Action slot: custom button from parent, OR default prev/next arrows */}
+                {/* Action slot */}
                 {action
                     ? <div className="shrink-0">{action}</div>
                     : hasMultiplePages && !isLoading && !isError && (
@@ -140,7 +113,7 @@ const ProductSlider = ({
                     <EmptyState title={emptyTitle} description={emptyDescription} />
                 )}
 
-                {/* Slider — snap scroll, natively swipeable */}
+                {/* Slider */}
                 {products && products.length > 0 && (
                     <>
                         <div
@@ -183,3 +156,30 @@ const ProductSlider = ({
 }
 
 export default ProductSlider
+
+
+
+/* ── Arrow nav button ───────────────────────────────────────── */
+const NavBtn = ({
+    dir,
+    onClick,
+    disabled,
+}: {
+    dir: 'prev' | 'next'
+    onClick: () => void
+    disabled?: boolean
+}) => (
+    <button
+        onClick={onClick}
+        disabled={disabled}
+        aria-label={dir === 'prev' ? 'Previous' : 'Next'}
+        className="w-8 lg:w-10 h-8 lg:h-10 flex items-center justify-center rounded-[8px] bg-dark hover:bg-dark/60 disabled:opacity-60 disabled:cursor-not-allowed transition-colors cursor-pointer"
+    >
+        <Image
+            src={dir === 'prev' ? '/icons/chevron_backward_light.svg' : '/icons/chevron_forward_light.svg'}
+            alt={dir === 'prev' ? 'Previous' : 'Next'}
+            width={16}
+            height={16}
+        />
+    </button>
+)

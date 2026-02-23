@@ -9,7 +9,7 @@ import Button from '@/components/ui/Button'
 import type { Product } from '@/types'
 import toast from 'react-hot-toast'
 
-/* ── Static options (design mock) ── */
+/* ── Static options ── */
 export const COLORS = ['#253043', '#707E6E']
 export const SIZES = [38, 39, 40, 41, 42, 43, 44, 45, 46, 47]
 

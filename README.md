@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kicks Store 👟
 
-## Getting Started
+A premium, responsive sneaker storefront built with Next.js, Redux, and Tailwind CSS. This application features a modern UI, dynamic product discovery, and a seamless shopping experience integrated with a product API.
 
-First, run the development server:
+**Live Demo:** [https://kicks-store-eight.vercel.app/](https://kicks-store-eight.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Dynamic Product Listing**: Fetches and displays "New Drops" directly from the Platzi API.
+- **Product Details**: Comprehensive view of each product with dynamic data, size selection, and related items.
+- **Category Navigation**: Browsable categories with dedicated product listing pages.
+- **Shopping Cart**: Fully functional local cart state management (Add, Remove, Update quantity/size).
+- **Responsive Design**: Fluid layout optimized for Mobile, Tablet, and Desktop viewports.
+- **State Management**: Robust state handling using Redux Toolkit and RTK Query.
+- **UI/UX Polish**: Loading skeletons, error boundaries, empty states, and subtle animations.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: [Next.js 16 (App Router)](https://nextjs.org/)
+- **State Management**: [Redux Toolkit](https://redux-toolkit.js.org/)
+- **Data Fetching**: [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Icons & Assets**: Custom SVG icons and Platzi API image assets.
 
-## Learn More
+## 📦 Getting Started
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js 18+
+- pnpm (recommended) or npm/yarn
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Installation
 
-## Deploy on Vercel
+1. Clone the repository:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   git clone https://github.com/shamim1845/kicks-store.git
+   cd kicks-store
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Install dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+3. Run the development server:
+
+   ```bash
+   pnpm dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 🧩 Architecture Notes
+
+- **Redux Services**: API logic is encapsulated in `redux/services` using RTK Query for automatic caching and state tracking.
+- **Component Design**: Modular architecture with `feature`-based components and reusable `ui` atoms.
+- **Responsive Strategy**: mobile-first approach using Tailwind's grid and flexbox utilities.
+
+---
+
+Developed with ❤️ by [Md Shamim Hossain](https://www.developershamim.me)

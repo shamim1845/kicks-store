@@ -22,7 +22,7 @@ const ProductCard = ({ product, className, isNew = true, badge }: ProductCardPro
     return (
         <div
             className={cn(
-                'group relative flex flex-col gap-4 overflow-hidden w-full h-full',
+                'group relative flex flex-col gap-4 overflow-hidden w-full h-full animate-slide-up',
                 className
             )}
         >

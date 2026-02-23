@@ -9,8 +9,8 @@ import CartItems from "@/components/feature/Cart/CartItems";
 const CartPage = () => {
   const { items } = useAppSelector((state) => state.cart);
 
-  // Use the first item's ID for related products, or fallback to a default (e.g., ID 11)
-  const firstItemId = items.length > 0 ? items[0].id : 11;
+  // Use the first item's ID for related products, or fallback to a default (e.g., ID 1)
+  const firstItemId = items.length > 0 ? items[0].id : 1;
   const {
     data: related,
     isLoading: relatedLoading,

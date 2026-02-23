@@ -41,7 +41,7 @@ const BrokenShoeIcon = ({ className }: { className?: string }) => (
                 strokeDasharray="3 2"
             />
 
-            {/* Crack lines across the shoe */}
+            {/* Crack lines */}
             <path d="M22 38L28 34M40 40L46 36M32 44L38 42" stroke="currentColor" strokeWidth="1" strokeLinecap="round" opacity="0.4" />
         </svg>
 
@@ -64,7 +64,7 @@ const BrokenShoeIcon = ({ className }: { className?: string }) => (
     </div>
 )
 
-/* ── Gallery Error — Premium Gallery Placeholder ── */
+/* ── Gallery Error ── */
 export const GalleryError = ({ onRetry, className }: ProductErrorProps) => (
     <div className={cn(
         "flex flex-col items-center justify-center gap-6 w-full aspect-square lg:aspect-auto lg:h-full min-h-[400px] bg-[#F5F5F5] rounded-[28px] border-2 border-dashed border-gray-200 px-8 text-center transition-all duration-300 hover:border-blue/30 group",
@@ -98,7 +98,7 @@ export const GalleryError = ({ onRetry, className }: ProductErrorProps) => (
     </div>
 )
 
-/* ── Full Product Error — Premium Two-Panel UI ── */
+/* ── Full Product Error ── */
 const ProductError = ({ onRetry, className }: ProductErrorProps) => (
     <div className={cn(
         "col-span-1 lg:col-span-2 flex flex-col items-center justify-center gap-8 py-24 px-8 text-center bg-white rounded-[40px] border border-gray-100 shadow-sm relative overflow-hidden",
