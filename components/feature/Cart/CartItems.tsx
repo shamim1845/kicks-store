@@ -11,13 +11,13 @@ const CartItems = () => {
             <div className="bg-light-gray rounded-[16px] p-4 lg:p-6 border border-gray-100 shadow-sm">
                 <div className="flex flex-col gap-2 mb-8">
                     <h2 className="text-[20px] lg:text-[32px] font-semibold text-dark">Your Bag</h2>
-                    <p className="text-[14px] lg:text-[16px] font-open-sans font-normal text-dark">
+                    <p className="text-[14px] lg:text-[16px] font-open-sans font-normal text-dark/80">
                         Items in your bag not reserved- check out now to make them yours.
                     </p>
                 </div>
 
                 {items.length > 0 ? (
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-4 lg:gap-6">
                         {items.map((item, idx) => (
                             <CartItem
                                 key={`${item.id}-${item.size}-${item.color}-${idx}`}

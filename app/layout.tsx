@@ -4,6 +4,7 @@ import { Rubik, Open_Sans, Inter } from "next/font/google";
 import Header from "@/components/feature/Header";
 import ReduxProvider from "@/components/ReduxProvider";
 import Footer from "@/components/feature/Footer";
+import { Toaster } from "react-hot-toast";
 
 // font setup
 const rubik = Rubik({
@@ -46,6 +47,7 @@ export default function RootLayout({
             {children}
             <Footer />
           </main>
+          <Toaster />
         </ReduxProvider>
       </body>
     </html>

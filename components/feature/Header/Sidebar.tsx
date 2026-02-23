@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { navLinks } from './index'
+import { useAppSelector } from '@/redux/hooks'
 
 
 interface SidebarProps {
@@ -13,6 +14,10 @@ interface SidebarProps {
 
 const Sidebar = ({ openMobileMenu, setOpenMobileMenu }: SidebarProps) => {
     const [expandedMenu, setExpandedMenu] = useState<string | null>(null)
+
+    // Get cart items from Redux store
+    const { items } = useAppSelector((state) => state.cart);
+    const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
 
     const close = () => setOpenMobileMenu(false)
     const toggleMenu = (name: string) =>
@@ -131,9 +136,11 @@ const Sidebar = ({ openMobileMenu, setOpenMobileMenu }: SidebarProps) => {
                 <div className="px-5 py-5 border-t border-[#E8E8E8] flex items-center gap-5">
                     <Image src="/icons/search.svg" alt="Search" width={22} height={22} className="cursor-pointer opacity-70 hover:opacity-100 transition-opacity" />
                     <Image src="/icons/user.svg" alt="Account" width={22} height={22} className="cursor-pointer opacity-70 hover:opacity-100 transition-opacity" />
-                    <div className="w-[28px] h-[28px] bg-yellow rounded-full flex items-center justify-center ml-auto">
-                        <span className="text-[13px] font-semibold">0</span>
-                    </div>
+
+                    {/* Cart Count */}
+                    <Link href="/cart" className="w-[28px] h-[28px] bg-yellow rounded-full flex items-center justify-center ml-auto">
+                        <span className="text-[13px] font-semibold">{cartCount}</span>
+                    </Link>
                 </div>
             </aside>
         </>

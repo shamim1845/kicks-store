@@ -24,10 +24,10 @@ const ProductCard = ({ product, className, isNew = true, badge }: ProductCardPro
             )}
         >
             {/* Image area */}
-            <div className="relative bg-light-gray flex items-center justify-center p-2  overflow-hidden rounded-[16px] lg:rounded-[28px] w-full h-full">
+            <div className="relative bg-light-gray aspect-3/3.5 flex items-center justify-center p-2  overflow-hidden rounded-[16px] lg:rounded-[28px] w-full h-full">
                 {/* Badge */}
                 {badgeLabel && (
-                    <span className={cn("absolute top-[8px] left-[8px] z-10 text-[11px] font-inter font-semibold uppercase px-2 lg:px-4 py-1 lg:py-3 rounded-tl-[12px] lg:rounded-tl-[24px] rounded-br-[12px] lg:rounded-br-[24px] tracking-wide", badgeBg)}>
+                    <span className={cn("absolute top-[10px] left-[9px] z-10 text-[11px] font-inter font-semibold uppercase px-2 lg:px-4 py-1 lg:py-3 rounded-tl-[12px] lg:rounded-tl-[24px] rounded-br-[12px] lg:rounded-br-[24px] tracking-wide", badgeBg)}>
                         {badgeLabel}
                     </span>
                 )}

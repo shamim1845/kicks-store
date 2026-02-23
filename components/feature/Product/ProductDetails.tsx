@@ -7,10 +7,11 @@ import { useAppDispatch } from '@/redux/hooks'
 import { addToCart } from '@/redux/features/cartSlice'
 import Button from '@/components/ui/Button'
 import type { Product } from '@/types'
+import toast from 'react-hot-toast'
 
 /* ── Static options (design mock) ── */
-const COLORS = ['#253043', '#707E6E']
-const SIZES = [38, 39, 40, 41, 42, 43, 44, 45, 46, 47]
+export const COLORS = ['#253043', '#707E6E']
+export const SIZES = [38, 39, 40, 41, 42, 43, 44, 45, 46, 47]
 
 interface ProductDetailsProps {
     product: Product
@@ -36,12 +37,11 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             price: product.price,
             image: product.images[0],
             category: product.category.name,
-            color: COLORS[selectedColor], // Using hex as name for now
+            color: COLORS[selectedColor],
             size: selectedSize,
         }))
 
-        // Optional: Provide feedback (alert or toast)
-        alert('Added to cart!')
+        toast.success('Added to cart!')
     }
 
     const handleBuyNow = () => {
