@@ -1,28 +1,24 @@
 "use client";
 
-import { useParams } from "next/navigation";
-import { useGetCategoryProductsQuery } from "@/redux/hooks";
-import CategoryHeader from "@/components/feature/Categories/CategoryHeader";
+import { useGetProductsQuery } from "@/redux/hooks";
+import NewDropsHeader from "@/components/feature/NewDrops/NewDropsHeader";
 import ProductCard from "@/components/ui/ProductCard";
 import ProductCardSkeleton from "@/components/ui/ProductCardSkeleton";
 import ErrorState from "@/components/ui/ErrorState";
 import EmptyState from "@/components/ui/EmptyState";
 
-export default function CategoryProductsPage() {
-  const { id } = useParams<{ id: string }>();
-  const categoryId = Number(id);
-
+export default function NewDropsPage() {
   const {
     data: products,
     isLoading,
     isError,
     refetch,
-  } = useGetCategoryProductsQuery(categoryId);
+  } = useGetProductsQuery({ limit: 100, offset: 0 });
 
   return (
     <div className="page_container">
-      {/* Category Header */}
-      <CategoryHeader categoryId={categoryId} />
+      {/* Header */}
+      <NewDropsHeader />
 
       {/* Error State */}
       {isError && (
@@ -46,7 +42,7 @@ export default function CategoryProductsPage() {
       )}
 
       {/* Products */}
-      {(isLoading || products?.length) && !isError ? (
+      {(isLoading || (products && products.length > 0)) && !isError && (
         <section className="section_container pb-20">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 lg:gap-x-4 lg:gap-y-12">
             {isLoading ? (
@@ -58,7 +54,7 @@ export default function CategoryProductsPage() {
             )}
           </div>
         </section>
-      ) : null}
+      )}
     </div>
   );
 }

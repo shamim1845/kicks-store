@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Button from './Button'
@@ -12,6 +13,8 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, className, isNew = true, badge }: ProductCardProps) => {
+    const [imgError, setImgError] = useState(false)
+
     // Determine badge label & color
     const badgeLabel = badge ?? (isNew ? 'New' : null)
     const badgeBg = badge ? 'bg-yellow text-dark' : 'bg-blue text-white'
@@ -27,18 +30,19 @@ const ProductCard = ({ product, className, isNew = true, badge }: ProductCardPro
             <div className="relative bg-light-gray aspect-3/3.5 flex items-center justify-center p-2  overflow-hidden rounded-[16px] lg:rounded-[28px] w-full h-full">
                 {/* Badge */}
                 {badgeLabel && (
-                    <span className={cn("absolute top-[10px] left-[9px] z-10 text-[11px] font-inter font-semibold uppercase px-2 lg:px-4 py-1 lg:py-3 rounded-tl-[12px] lg:rounded-tl-[24px] rounded-br-[12px] lg:rounded-br-[24px] tracking-wide", badgeBg)}>
+                    <span className={cn("absolute top-[8px] left-[8px] z-10 text-[11px] font-inter font-semibold uppercase px-2 lg:px-4 py-1 lg:py-3 rounded-tl-[12px] lg:rounded-tl-[24px] rounded-br-[12px] lg:rounded-br-[24px] tracking-wide", badgeBg)}>
                         {badgeLabel}
                     </span>
                 )}
                 {/* Image */}
-                <Link href={`/product/${product.id}`}>
+                <Link href={`/product/${product.id}`} className='w-full h-full'>
                     <Image
-                        src={product.images[0] || "https://placehold.co/600x480"}
+                        src={!imgError ? (product.images[0] || "https://placehold.co/302x334?text=No+Image") : "https://placehold.co/302x334?text=No+Image"}
                         alt={product.title}
                         width={300}
-                        height={240}
-                        className="w-full h-full aspect-3/3.5 object-cover transition-transform duration-500 group-hover:scale-105 rounded-[12px] lg:rounded-[24px]"
+                        height={334}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 rounded-[12px] lg:rounded-[24px]"
+                        onError={() => setImgError(true)}
                         unoptimized
                     />
                 </Link>
