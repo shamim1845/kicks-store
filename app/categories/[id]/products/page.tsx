@@ -24,41 +24,34 @@ export default function CategoryProductsPage() {
       {/* Category Header */}
       <CategoryHeader categoryId={categoryId} />
 
-      {/* Error State */}
-      {isError && (
-        <section className="section_container">
+      <section className="section_container pb-20">
+        {isLoading ? (
+          /* Loading State */
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 lg:gap-x-4 lg:gap-y-12">
+            <ProductCardSkeleton count={8} />
+          </div>
+        ) : isError ? (
+          /* Error State */
           <ErrorState
             title="Failed to load products"
             description="We couldn't fetch the products for this category. Please try again."
             onRetry={refetch}
           />
-        </section>
-      )}
-
-      {/* Empty State */}
-      {!isError && !isLoading && (!products || products.length === 0) && (
-        <section className="section_container">
+        ) : !products || products.length === 0 ? (
+          /* Empty State */
           <EmptyState
             title="No products found"
             description="It looks like there are no products available in this category at the moment."
           />
-        </section>
-      )}
-
-      {/* Products */}
-      {(isLoading || products?.length) && !isError ? (
-        <section className="section_container pb-20">
+        ) : (
+          /* Products Grid */
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 lg:gap-x-4 lg:gap-y-12">
-            {isLoading ? (
-              <ProductCardSkeleton count={8} />
-            ) : (
-              products?.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))
-            )}
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
           </div>
-        </section>
-      ) : null}
+        )}
+      </section>
     </div>
   );
 }

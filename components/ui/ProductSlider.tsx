@@ -98,57 +98,55 @@ const ProductSlider = ({
             {/* ── Body ── */}
             <div className="mt-6 lg:mt-10">
 
-                {/* Loading skeleton */}
-                {isLoading && (
+                {isLoading ? (
+                    /* Loading skeleton */
                     <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <ProductCardSkeleton count={4} />
                     </ul>
-                )}
-
-                {/* Error */}
-                {isError && <ErrorState onRetry={refetch} />}
-
-                {/* Empty */}
-                {isEmpty && (
+                ) : isError ? (
+                    /* Error */
+                    <ErrorState onRetry={refetch} />
+                ) : isEmpty ? (
+                    /* Empty */
                     <EmptyState title={emptyTitle} description={emptyDescription} />
-                )}
-
-                {/* Slider */}
-                {products && products.length > 0 && (
-                    <>
-                        <div
-                            ref={sliderRef}
-                            className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory"
-                            style={{ scrollbarWidth: 'none' }}
-                        >
-                            {pages.map((pageProducts, pageIdx) => (
-                                <div key={pageIdx} className="w-full shrink-0 snap-start">
-                                    <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                        {pageProducts.map((product) => (
-                                            <li key={product.id}>
-                                                <ProductCard product={product} isNew={true} />
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* Dot indicators */}
-                        {hasMultiplePages && (
-                            <div className="flex justify-center items-center gap-2 mt-5">
-                                {Array.from({ length: totalPages }).map((_, i) => (
-                                    <button
-                                        key={i}
-                                        onClick={() => goToPage(i)}
-                                        aria-label={`Go to page ${i + 1}`}
-                                        className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activePage === i ? 'w-5 bg-blue' : 'w-2 bg-gray-300'
-                                            }`}
-                                    />
+                ) : (
+                    /* Slider */
+                    products && products.length > 0 && (
+                        <>
+                            <div
+                                ref={sliderRef}
+                                className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory"
+                                style={{ scrollbarWidth: 'none' }}
+                            >
+                                {pages.map((pageProducts, pageIdx) => (
+                                    <div key={pageIdx} className="w-full shrink-0 snap-start">
+                                        <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                            {pageProducts.map((product) => (
+                                                <li key={product.id}>
+                                                    <ProductCard product={product} isNew={true} />
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
                                 ))}
                             </div>
-                        )}
-                    </>
+
+                            {/* Dot indicators */}
+                            {hasMultiplePages && (
+                                <div className="flex justify-center items-center gap-2 mt-5">
+                                    {Array.from({ length: totalPages }).map((_, i) => (
+                                        <button
+                                            key={i}
+                                            onClick={() => goToPage(i)}
+                                            aria-label={`Go to page ${i + 1}`}
+                                            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activePage === i ? 'w-5 bg-blue' : 'w-2 bg-gray-300'
+                                                }`}
+                                        />
+                                    ))}
+                                </div>
+                            )}
+                        </>
+                    )
                 )}
             </div>
         </section>

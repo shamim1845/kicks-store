@@ -14,6 +14,7 @@ export default function ProductPage() {
 
     // Get product by id
     const { data: product, isLoading, isError, refetch } = useGetProductByIdQuery(productId)
+
     // Get related products by id
     const {
         data: related,
@@ -30,16 +31,24 @@ export default function ProductPage() {
 
                     {/* Left: image gallery */}
                     <div>
-                        {isLoading && <GallerySkeleton />}
-                        {isError && !product && <GalleryError onRetry={refetch} />}
-                        {product && <ImageGallery images={product.images} title={product.title} />}
+                        {isLoading ? (
+                            <GallerySkeleton />
+                        ) : isError && !product ? (
+                            <GalleryError onRetry={refetch} />
+                        ) : product ? (
+                            <ImageGallery images={product.images} title={product.title} />
+                        ) : null}
                     </div>
 
                     {/* Right: product details */}
                     <div>
-                        {isLoading && <ProductDetailsSkeleton />}
-                        {isError && !product && <ProductError onRetry={refetch} />}
-                        {product && <ProductDetails product={product} />}
+                        {isLoading ? (
+                            <ProductDetailsSkeleton />
+                        ) : isError && !product ? (
+                            <ProductError onRetry={refetch} />
+                        ) : product ? (
+                            <ProductDetails product={product} />
+                        ) : null}
                     </div>
 
                 </div>
