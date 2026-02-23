@@ -19,6 +19,9 @@ export const productsApi = createApi({
         getRelatedProducts: builder.query<Product[], number>({
             query: (id) => `products/${id}/related`,
         }),
+        getCategoryProducts: builder.query<Product[], number>({
+            query: (id) => `categories/${id}/products`,
+        }),
     }),
 })
 
@@ -26,4 +29,5 @@ export const {
     useGetProductsQuery,
     useGetProductByIdQuery,
     useGetRelatedProductsQuery,
+    useGetCategoryProductsQuery,
 } = productsApi

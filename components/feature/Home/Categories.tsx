@@ -38,7 +38,7 @@ const CategoryCard = ({ category }: { category: Category }) => {
         <div className="relative flex flex-col bg-light-gray overflow-hidden group w-full aspect-358/348 lg:aspect-690/600">
             {/* Image */}
             <div className="flex-1 flex items-center justify-center bg-gray overflow-hidden">
-                <Link href={`/category/${category.id}`}>
+                <Link href={`/categories/${category.id}/products`}>
                     <Image
                         src={!imageError ? category.image : 'https://placehold.co/690x600'}
                         alt={category.name}
@@ -57,7 +57,7 @@ const CategoryCard = ({ category }: { category: Category }) => {
                     {category.name}
                 </h3>
                 <div className="w-[32px] h-[32px] lg:w-[48px] lg:h-[48px] bg-dark rounded-[8px] flex items-center justify-center shrink-0 hover:bg-dark/80 transition-colors duration-300">
-                    <Link href={`/category/${category.id}`}>
+                    <Link href={`/categories/${category.id}/products`}>
                         <Image src="/icons/arrow_trend_right_up.svg" alt="View category" width={32} height={32}
                             className='w-[16px] h-[16px] lg:w-[32px] lg:h-[32px]'
                         />
