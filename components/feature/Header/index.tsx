@@ -67,7 +67,7 @@ const Header = () => {
                                 )}
                                 {/* Dropdown Menu */}
                                 {openMenu === link?.name && (
-                                    <ul className="absolute top-full left-0 w-max bg-white shadow-lg p-4 rounded-lg flex flex-col gap-1">
+                                    <ul className="absolute top-full left-0 w-max bg-white shadow-lg p-4 rounded-lg flex flex-col gap-1 z-10">
                                         {link?.children?.map((child) => (
                                             <li key={child.name}>
                                                 <Link

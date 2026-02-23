@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { useAppDispatch } from "@/redux/hooks";
 import {
-  removeFromCart,
-  updateQuantity,
-  CartItem as CartItemType,
+    CartItem as CartItemType,
+    removeFromCart,
+    updateCartItem,
 } from "@/redux/features/cartSlice";
 import { SIZES } from "../Product/ProductDetails";
 
@@ -15,8 +15,6 @@ interface CartItemProps {
 
 const CartItem = ({ item }: CartItemProps) => {
   const dispatch = useAppDispatch();
-
-  console.log(item);
 
   return (
     <div className="flex gap-4 lg:gap-6 relative overflow-hidden">
@@ -63,11 +61,11 @@ const CartItem = ({ item }: CartItemProps) => {
                   className="bg-transparent text-[16px] lg:text-[20px] font-open-sans font-semibold text-dark/80 cursor-pointer outline-none"
                   onChange={(e) =>
                     dispatch(
-                      updateQuantity({
+                      updateCartItem({
                         id: item.id,
                         size: item.size,
                         color: item.color,
-                        quantity: Number(e.target.value),
+                        updates: { size: Number(e.target.value) },
                       }),
                     )
                   }
@@ -91,11 +89,11 @@ const CartItem = ({ item }: CartItemProps) => {
                   className="bg-transparent text-[16px] lg:text-[20px] font-open-sans font-semibold text-dark/80 cursor-pointer outline-none"
                   onChange={(e) =>
                     dispatch(
-                      updateQuantity({
+                      updateCartItem({
                         id: item.id,
                         size: item.size,
                         color: item.color,
-                        quantity: Number(e.target.value),
+                        updates: { quantity: Number(e.target.value) },
                       }),
                     )
                   }
@@ -120,7 +118,7 @@ const CartItem = ({ item }: CartItemProps) => {
 
         {/* Actions */}
         <div className="flex items-center gap-4 lg:gap-6 mt-3">
-          <button className="text-dark hover:text-blue transition-colors">
+          <button className="text-dark hover:scale-110 transition-transform">
             <Image
               src="/icons/heart_black.svg"
               alt="Wishlist"
@@ -139,7 +137,7 @@ const CartItem = ({ item }: CartItemProps) => {
                 }),
               )
             }
-            className="text-dark hover:text-red-500 transition-colors"
+            className="text-dark hover:scale-110 transition-transform"
             aria-label="Remove item"
           >
             <Image
